@@ -1,8 +1,6 @@
 package main
 
-import (
-	"github.com/RajChodisetti/gobyexample/banking/app"
-)
+import "bankingweb/app"
 
 func main() {
 	app.Start()

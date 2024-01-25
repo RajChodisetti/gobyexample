@@ -1,0 +1,5 @@
+This is like *args and *kwargs in python, When we are not sure of the number of arguements we are going to enter , we use variadic functions.
+
+sum(nums...) Here when calling sum function, when we use the slice of ints (nums) as arguement , we use ... 
+
+In Go, using three dots (...) is called a "variadic" parameter. When you use ... after a slice when passing it as an argument to a variadic function, it unpacks the elements of the slice and passes them individually as arguments to the function. This allows you to pass a variable number of arguments to the function, and the function can handle them as a slice.
