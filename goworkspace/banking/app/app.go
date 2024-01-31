@@ -1,7 +1,8 @@
 package app
 
 import (
-	"fmt"
+	"bankingweb/domain"
+	"bankingweb/service"
 	"log"
 	"net/http"
 
@@ -13,22 +14,15 @@ func Start() {
 	//mux := http.NewServeMux()
 	router := mux.NewRouter()
 
-	router.HandleFunc("/greet", greet)
-	router.HandleFunc("/customers", getAllCustomers).Methods(http.MethodGet)
+	ch := CustomerHandlers{service.NewCustomerService(domain.NewCustomerRespositoryStub())}
+
+	router.HandleFunc("/customers", ch.GetAllCustomers).Methods(http.MethodGet)
 
 	//request matcher regex followed after :
-	router.HandleFunc("/customers/{customer_id:[0-9]+}", getAllCustomer)
+	//router.HandleFunc("/customers/{customer_id:[0-9]+}", getAllCustomer).Methods(http.MethodGet)
 
 	//method matcher .methods
-	router.HandleFunc("/customers", createCustomers).Methods(http.MethodPost)
+	//router.HandleFunc("/customers", createCustomers).Methods(http.MethodPost)
+
 	log.Fatal(http.ListenAndServe("localhost:8000", router))
-}
-
-func getAllCustomer(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	fmt.Fprint(w, vars["customer_id"])
-
-}
-func createCustomers(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Post request recieved")
 }
