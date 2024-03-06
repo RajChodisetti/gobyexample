@@ -3,7 +3,7 @@ package service
 import "bankingweb/domain"
 
 type CustomerService interface {
-	getAllCustomer() ([]domain.Customer, error)
+	GetAllCustomer() ([]domain.Customer, error)
 }
 
 type DefaultCustomerService struct {
